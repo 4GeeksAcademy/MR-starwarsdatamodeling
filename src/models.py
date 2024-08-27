@@ -15,8 +15,7 @@ class User(Base):
     password = Column(String(250))
 
     favorites = relationship("Favorite")
-    comments = relationship("Comment")
-
+   
 class Character(Base):
     __tablename__ = 'character'
     id = Column(Integer, primary_key=True)
@@ -28,7 +27,6 @@ class Character(Base):
     gender = Column(String(250))
 
     favorites = relationship("Favorite")
-    comments = relationship("Comment")
 
 class Planet(Base):
     __tablename__ = 'planet'
@@ -40,7 +38,6 @@ class Planet(Base):
     terrain = Column(String(250))
 
     favorites = relationship("Favorite")
-    comments = relationship("Comment")
 
 class Favorite(Base):
     __tablename__ = 'favorite'
@@ -52,14 +49,6 @@ class Favorite(Base):
     user = relationship("User")
     character = relationship("Character")
     planet = relationship("Planet")
-
-class Comment(Base):
-    __tablename__ = 'comment'
-    id = Column(Integer, primary_key=True)
-    content = Column(String(250))
-    user_id = Column(Integer, ForeignKey('user.id'))
-    character_id = Column(Integer, ForeignKey('character.id'))
-    planet_id = Column(Integer, ForeignKey('planet.id'))
 
     # Relationships
     user = relationship("User")
